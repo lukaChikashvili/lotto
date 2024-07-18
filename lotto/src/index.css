@@ -1,3 +1,5 @@
+@import url("//cdn.web-fonts.ge/fonts/bpg-glaho/css/bpg-glaho.min.css");
+
 #root {
   position: fixed;
   top: 0;
@@ -6,11 +8,12 @@
   height: 100vh;
   overflow: hidden;
   
+  
 }
 
 body {
   background-color: #FF6969;
-
+  font-family: "BPG Glaho", sans-serif;
 }
 
 .btn {
@@ -24,8 +27,11 @@ body {
   font-size: 20px;
   cursor: pointer;
   margin: 10px;
+ 
 
 }
+
+
 
 .container {
   position: absolute;
