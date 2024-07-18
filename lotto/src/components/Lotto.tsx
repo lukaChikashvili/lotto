@@ -26,7 +26,7 @@ const Lotto = ({controlsRef}: {controlsRef: any}) => {
      minPolarAngle={0}
      ref={controlsRef}
     />
-     <mesh scale={4} position-y = {-1} position-z = {-1}  rotation={[Math.PI * -0.5, 0, 0]}  >
+     <mesh scale={4} position-y = {1} position-z = {-1}  rotation={[Math.PI * -0.5, 0, 0]}  >
      {boxes}
       <meshStandardMaterial  side={DoubleSide} />
      </mesh>

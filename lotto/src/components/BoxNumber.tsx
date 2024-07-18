@@ -1,11 +1,12 @@
 import { useSpring, animated } from "@react-spring/three";
 import { Text } from "@react-three/drei";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 export const BoxWithNumber = ({ position, number }: {position: [number, number, number], number: number}) => {
 
     const [hovered, setHovered] = useState(false);
+    let box = useRef(null);
 
     const { scale } = useSpring({
         scale: hovered ? 1.2 : 1,
@@ -18,13 +19,18 @@ export const BoxWithNumber = ({ position, number }: {position: [number, number, 
 
       const handlePointerOut = () => {
         setHovered(false);
+
       }
+
+   
     return (
      
         <animated.mesh position={position}
         scale={scale} 
         onPointerOver={handlePointerOver}
-        onPointerOut = {handlePointerOut} castShadow>
+        onPointerOut = {handlePointerOut}
+        
+        castShadow ref={box}>
           <boxGeometry args={[1, 1, 1]} />
           <meshStandardMaterial color={hovered ? 'lightgray' : 'white'} />
           <Text
