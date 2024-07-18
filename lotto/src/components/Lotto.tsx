@@ -10,7 +10,7 @@ const Lotto = () => {
  for(let i = 0; i < 42; i++) {
   const x = (i % 7) - 3;
   const y = Math.floor(i / 7) - 3;
-  const position: [number, number, number] = [x * 1.5, y * 1.5, 0];
+  const position: [number, number, number] = [x * 1.5, y * 1.6, 0];
   boxes.push(<BoxWithNumber  key={i} position={position} number={i}/>)
  } 
 
@@ -19,7 +19,7 @@ const Lotto = () => {
      
     <>
     <OrbitControls makeDefault/>
-     <mesh scale={4}  >
+     <mesh scale={4} position-y = {2} rotation={[Math.PI * -0.5, 0, 0]}  >
      {boxes}
       <meshStandardMaterial  side={DoubleSide} />
      </mesh>
