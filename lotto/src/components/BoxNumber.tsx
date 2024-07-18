@@ -1,3 +1,4 @@
+import { useSpring, animated } from "@react-spring/three";
 import { Text } from "@react-three/drei";
 import { useState } from "react";
 
@@ -5,6 +6,11 @@ import { useState } from "react";
 export const BoxWithNumber = ({ position, number }: {position: [number, number, number], number: number}) => {
 
     const [hovered, setHovered] = useState(false);
+
+    const { scale } = useSpring({
+        scale: hovered ? 1.2 : 1,
+        config: { tension: 200, friction: 20}
+    })
 
       const handlePointerOver = () => {
           setHovered(true)
@@ -15,7 +21,8 @@ export const BoxWithNumber = ({ position, number }: {position: [number, number, 
       }
     return (
      
-        <mesh position={position} 
+        <animated.mesh position={position}
+        scale={scale} 
         onPointerOver={handlePointerOver}
         onPointerOut = {handlePointerOut}>
           <boxGeometry args={[1, 1, 1]} />
@@ -30,7 +37,7 @@ export const BoxWithNumber = ({ position, number }: {position: [number, number, 
           >
             { number + 1}
           </Text>
-        </mesh>
+        </animated.mesh>
  
     );
   };
