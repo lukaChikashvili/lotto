@@ -4,7 +4,8 @@ import { BoxWithNumber } from "./BoxNumber";
 
 
 
-const Lotto = () => {
+
+const Lotto = ({controlsRef}: {controlsRef: any}) => {
  // display 42 boxes
  let boxes = [];
  for(let i = 0; i < 42; i++) {
@@ -18,8 +19,14 @@ const Lotto = () => {
   return (
      
     <>
-    <OrbitControls makeDefault/>
-     <mesh scale={4} position-y = {2} rotation={[Math.PI * -0.5, 0, 0]}  >
+    <OrbitControls
+     makeDefault maxAzimuthAngle={Math.PI / 4}
+     minAzimuthAngle={-Math.PI / 4}
+     maxPolarAngle={Math.PI / 2}
+     minPolarAngle={0}
+     ref={controlsRef}
+    />
+     <mesh scale={4} position-y = {-1} position-z = {-1}  rotation={[Math.PI * -0.5, 0, 0]}  >
      {boxes}
       <meshStandardMaterial  side={DoubleSide} />
      </mesh>

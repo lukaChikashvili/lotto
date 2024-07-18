@@ -24,7 +24,7 @@ export const BoxWithNumber = ({ position, number }: {position: [number, number, 
         <animated.mesh position={position}
         scale={scale} 
         onPointerOver={handlePointerOver}
-        onPointerOut = {handlePointerOut}>
+        onPointerOut = {handlePointerOut} castShadow>
           <boxGeometry args={[1, 1, 1]} />
           <meshStandardMaterial color={hovered ? 'lightgray' : 'white'} />
           <Text
