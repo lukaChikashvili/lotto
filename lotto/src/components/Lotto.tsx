@@ -9,7 +9,7 @@ const Lotto = ({ controlsRef }: { controlsRef: any }) => {
   const [setClick, setSetClick] = useState(true);
 
   // import from useContext
-  const { setShowModal } = useContext(UserContext);
+  const { setShowModal, showBoxes } = useContext(UserContext);
 
   const handleClick = (number: number) => {
     if (clickedNumbers.length < 6) {
@@ -77,7 +77,7 @@ const Lotto = ({ controlsRef }: { controlsRef: any }) => {
         position-z={-1}
         rotation={[Math.PI * -0.5, 0, 0]}
       >
-        {boxes}
+        {showBoxes && boxes}
         <meshStandardMaterial side={DoubleSide} />
       </mesh>
     </>

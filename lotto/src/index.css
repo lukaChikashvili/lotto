@@ -72,6 +72,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   color: #F4CE14;
   text-shadow: -2px 2px black;
   text-align: center;
+  margin-top: 40px;
 
 }
 
@@ -81,6 +82,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   justify-content: center;
   gap: 2rem;
   font-size: 3rem;
+  margin-top: 5rem;
   
   
 }
@@ -88,6 +90,10 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 .ball {
   background-color: #F4CE14;
   padding: 30px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border: 3px solid transparent;
   border-radius: 50%;
   box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.4);
   transition: all 0.3s cubic-bezier(0.47, 0, 0.745, 0.715);
@@ -98,6 +104,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 .ball:hover {
   background-color: #379777;
   color: #fff;
+  border: 3px solid #fff;
 }
 
 .modal span {
@@ -114,10 +121,36 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   position: absolute;
   top: 40px;
   left: 13px;
+  cursor: pointer;
   transition: all 0.5s ease;
 }
 
 .circle:hover {
   color: #F4CE14;
 
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.buttons button {
+  background-color: #F4CE14;
+  border: none;
+  box-shadow: -4px 4px black;
+  padding: 10px 40px;
+  color: #191919;
+  font-family: "BPG Glaho", sans-serif;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.9s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.buttons button:hover {
+  background-color: #379777;
+  box-shadow: -4px 4px #F4CE14;
+  color: #fff;
+  transform: translateY(-5px);
 }

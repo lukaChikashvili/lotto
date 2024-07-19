@@ -4,11 +4,17 @@ import { UserContext } from "../context/UserContext"
 
 
 const Modal = () => {
-    const { setShowModal, showModal } = useContext(UserContext);
+    const { setShowModal, showModal, setShowRealModal, setShowBoxes  } = useContext(UserContext);
     const [numbers, setNumbers] = useState<number[]>([]);
 
     const closeModal = () => {
-      setShowModal(false);
+      setShowRealModal(false)
+    }
+
+    const startPlaying = () => {
+      setShowRealModal(false);
+      setShowBoxes(false);
+
     }
 
     useEffect(() => {
@@ -17,7 +23,10 @@ const Modal = () => {
         setNumbers(numbersArray);
       }, [showModal]); 
      
-
+const clearNumbers = () => {
+    localStorage.clear();
+    setShowModal(false)
+}
     
   return (
     <div className="modal">
@@ -30,7 +39,11 @@ const Modal = () => {
           
             </div>
          ))}
-  
+
+  </div>
+ <div className="buttons">
+  <button onClick={startPlaying}>გაგრძელება</button>
+  <button onClick={clearNumbers}>თავიდან არჩევა</button>
   </div>
     </div>
   )

@@ -9,16 +9,18 @@ import CameraController from './components/CameraController';
 import {  PlusCircle, Video, VideoOff } from 'lucide-react';
 import { UserContext } from './context/UserContext';
 import Modal from './components/Modal';
+import sweepSound from './assets/mixkit-fast-small-sweep-transition-166.wav'
 
 function App() {
 let controlsRef = useRef<OrbitControlsImpl | null>(null);
 const [cameraDefault, setCameraDefault] = useState(false);
 
+
 const [targetPosition, setTargetPosition] = useState(new THREE.Vector3(-7, 15, 40));
 const [targetRotation, setTargetRotation] = useState(new THREE.Euler(0, 0, 0));
 const [isDefault, setIsDefault] = useState(true);
 
-const { showModal, setShowModal } = useContext(UserContext);
+const { showModal, setShowModal, setShowRealModal, showRealModal } = useContext(UserContext);
   const moveCamera = () => {
     if (isDefault) {
       setTargetPosition(new THREE.Vector3(0, 40, 0)); 
@@ -30,10 +32,15 @@ const { showModal, setShowModal } = useContext(UserContext);
     setIsDefault(!isDefault);
 
     setCameraDefault(!cameraDefault);
+    const sweep = new Audio(sweepSound);
+    sweep.play();
   };
 
 
-
+const handleModal = () => {
+  setShowModal(true);
+  setShowRealModal(!showRealModal)
+}
 
 
   return (
@@ -49,8 +56,8 @@ const { showModal, setShowModal } = useContext(UserContext);
   <button className='btn' onClick={moveCamera} >{cameraDefault ? <VideoOff /> : <Video />}{cameraDefault ? "ახლო ხედვა" : "შორს ხედვა"}</button>
   {showModal ? <h2 className='title'>არჩეულია!</h2> :  <h2 className='title'>აირჩიეთ <span>6</span> რიცხვი </h2>}
  
-   {showModal && <Modal />}
-   {!showModal && <PlusCircle size={30} className='circle'  onClick={() => setShowModal(!showModal)} />}
+   {showModal && <PlusCircle size={30} className='circle' onClick={handleModal}   />}
+   {showRealModal && <Modal />}
   </div>
     </>
   )

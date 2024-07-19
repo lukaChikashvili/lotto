@@ -1,6 +1,8 @@
-import  { useEffect, useRef, useState } from "react";
+import  {  useRef, useState } from "react";
 import { useSpring, animated } from "@react-spring/three";
 import { Text } from "@react-three/drei";
+import hoverSound from '../assets/mixkit-classic-click-1117.wav'
+import clickSound from '../assets/mixkit-select-click-1109.wav'
 
 type BoxWithNumberProps = {
   position: [number, number, number];
@@ -23,6 +25,8 @@ const BoxWithNumber = ({ position, number, onClick, setClick }: BoxWithNumberPro
 
   const handlePointerOver = () => {
     setHovered(true);
+    const audio = new Audio(hoverSound);
+    audio.play();
   };
 
   const handlePointerOut = () => {
@@ -34,10 +38,12 @@ const BoxWithNumber = ({ position, number, onClick, setClick }: BoxWithNumberPro
       setProcessing(true);
       if(setClick) {
         setClicked(true);
-
+        const click = new Audio(clickSound);
+        click.play();
       }
       
       onClick(number + 1);
+      
 
       setTimeout(() => setProcessing(false), 100);
     }
