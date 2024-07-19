@@ -12,7 +12,7 @@
 }
 
 body {
-  background-color: #FF6969;
+  background-color: #379777;
   font-family: "BPG Glaho", sans-serif;
 }
 
@@ -27,7 +27,7 @@ body {
   font-size: 20px;
   cursor: pointer;
   margin: 10px;
- 
+  font-family: "BPG Glaho", sans-serif;
 
 }
 
@@ -40,4 +40,16 @@ body {
   top: 0;
   left: 0;
    
+}
+
+.title {
+  color: #F4CE14;
+  text-align: center;
+  margin-top: -20px;
+  font-size: 2rem;
+
+}
+
+.title span {
+  color: #fff;
 }

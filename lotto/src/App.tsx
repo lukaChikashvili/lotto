@@ -45,6 +45,7 @@ const [isDefault, setIsDefault] = useState(true);
       </Canvas>
 <div className='container'>
   <button className='btn' onClick={moveCamera} >{cameraDefault ? <VideoOff /> : <Video />}{cameraDefault ? "ახლო ხედვა" : "შორს ხედვა"}</button>
+  <h2 className='title'>აირჩიეთ <span>6</span> რიცხვი </h2>
   </div>
     </>
   )

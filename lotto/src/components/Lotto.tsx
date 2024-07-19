@@ -21,7 +21,25 @@ const Lotto = ({ controlsRef }: { controlsRef: any }) => {
   };
 
   useEffect(() => {
+    const storedNumbers = localStorage.getItem("clickedNumbers");
+    if (storedNumbers) {
+      try {
+        const parsedNumbers = JSON.parse(storedNumbers);
+        
+        if (Array.isArray(parsedNumbers) && parsedNumbers.every(num => typeof num === 'number')) {
+          setClickedNumbers(parsedNumbers);
+        }
+      } catch (error) {
+        console.error("Error parsing JSON from localStorage:", error);
+        localStorage.removeItem("clickedNumbers");
+      }
+    }
+  }, [])
+
+
+  useEffect(() => {
     console.log(clickedNumbers);
+    localStorage.setItem("clickedNumbers", JSON.stringify(clickedNumbers));
   }, [clickedNumbers]);
 
   // display 42 boxes
