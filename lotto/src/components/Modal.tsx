@@ -2,8 +2,8 @@
 
 const Modal = () => {
   return (
-    <div>
-      
+    <div className="modal">
+       <h1 className="modal-title">თქვენი არჩეული რიცხვები</h1>
     </div>
   )
 }

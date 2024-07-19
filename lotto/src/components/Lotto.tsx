@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { OrbitControls } from "@react-three/drei";
 import { DoubleSide } from "three";
 import BoxWithNumber from "./BoxNumber";
+import { UserContext } from "../context/UserContext";
 
 const Lotto = ({ controlsRef }: { controlsRef: any }) => {
   const [clickedNumbers, setClickedNumbers] = useState<number[]>([]);
   const [setClick, setSetClick] = useState(true);
+
+  // import from useContext
+  const { setShowModal } = useContext(UserContext);
 
   const handleClick = (number: number) => {
     if (clickedNumbers.length < 6) {
@@ -14,7 +18,9 @@ const Lotto = ({ controlsRef }: { controlsRef: any }) => {
     }
 
     if(clickedNumbers.length >= 5) {
-      setSetClick(false)
+      setSetClick(false);
+      setShowModal(true);
+
     }
 
 
