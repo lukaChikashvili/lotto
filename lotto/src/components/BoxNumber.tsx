@@ -1,4 +1,4 @@
-import  { useRef, useState } from "react";
+import  { useEffect, useRef, useState } from "react";
 import { useSpring, animated } from "@react-spring/three";
 import { Text } from "@react-three/drei";
 
@@ -42,6 +42,7 @@ const BoxWithNumber = ({ position, number, onClick, setClick }: BoxWithNumberPro
       setTimeout(() => setProcessing(false), 100);
     }
   };
+
 
   return (
     <animated.mesh

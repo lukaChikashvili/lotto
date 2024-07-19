@@ -22,6 +22,7 @@ const Lotto = ({ controlsRef }: { controlsRef: any }) => {
 
   useEffect(() => {
     const storedNumbers = localStorage.getItem("clickedNumbers");
+    
     if (storedNumbers) {
       try {
         const parsedNumbers = JSON.parse(storedNumbers);
@@ -38,9 +39,10 @@ const Lotto = ({ controlsRef }: { controlsRef: any }) => {
 
 
   useEffect(() => {
-    console.log(clickedNumbers);
+
     localStorage.setItem("clickedNumbers", JSON.stringify(clickedNumbers));
-  }, [clickedNumbers]);
+
+  }, [clickedNumbers, setClick]);
 
   // display 42 boxes
   let boxes = [];
