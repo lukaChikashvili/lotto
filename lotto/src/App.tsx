@@ -6,7 +6,7 @@ import { useContext, useRef, useState } from 'react';
 import { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import * as THREE from 'three'
 import CameraController from './components/CameraController';
-import {  Video, VideoOff } from 'lucide-react';
+import {  PlusCircle, Video, VideoOff } from 'lucide-react';
 import { UserContext } from './context/UserContext';
 import Modal from './components/Modal';
 
@@ -18,7 +18,7 @@ const [targetPosition, setTargetPosition] = useState(new THREE.Vector3(-7, 15, 4
 const [targetRotation, setTargetRotation] = useState(new THREE.Euler(0, 0, 0));
 const [isDefault, setIsDefault] = useState(true);
 
-const { showModal } = useContext(UserContext);
+const { showModal, setShowModal } = useContext(UserContext);
   const moveCamera = () => {
     if (isDefault) {
       setTargetPosition(new THREE.Vector3(0, 40, 0)); 
@@ -50,6 +50,7 @@ const { showModal } = useContext(UserContext);
   {showModal ? <h2 className='title'>არჩეულია!</h2> :  <h2 className='title'>აირჩიეთ <span>6</span> რიცხვი </h2>}
  
    {showModal && <Modal />}
+   {!showModal && <PlusCircle size={30} className='circle'  onClick={() => setShowModal(!showModal)} />}
   </div>
     </>
   )
