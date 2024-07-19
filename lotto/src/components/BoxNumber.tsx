@@ -1,49 +1,73 @@
+import  { useRef, useState } from "react";
 import { useSpring, animated } from "@react-spring/three";
 import { Text } from "@react-three/drei";
-import { useEffect, useRef, useState } from "react";
 
+type BoxWithNumberProps = {
+  position: [number, number, number];
+  number: number;
+  onClick: (num: number) => void; 
+  setClick: boolean;
+  
+};
 
-export const BoxWithNumber = ({ position, number }: {position: [number, number, number], number: number}) => {
+const BoxWithNumber = ({ position, number, onClick, setClick }: BoxWithNumberProps) => {
+  const [hovered, setHovered] = useState(false);
+  const [clicked, setClicked] = useState(false);
+  const [processing, setProcessing] = useState(false);
+  const boxRef = useRef(null);
 
-    const [hovered, setHovered] = useState(false);
-    let box = useRef(null);
+  const { scale } = useSpring({
+    scale: hovered ? 1.2 : 1,
+    config: { tension: 200, friction: 20 }
+  });
 
-    const { scale } = useSpring({
-        scale: hovered ? 1.2 : 1,
-        config: { tension: 200, friction: 20}
-    })
-
-      const handlePointerOver = () => {
-          setHovered(true)
-      }
-
-      const handlePointerOut = () => {
-        setHovered(false);
-
-      }
-
-   
-    return (
-     
-        <animated.mesh position={position}
-        scale={scale} 
-        onPointerOver={handlePointerOver}
-        onPointerOut = {handlePointerOut}
-        
-        castShadow ref={box}>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshStandardMaterial color={hovered ? 'lightgray' : 'white'} />
-          <Text
-            position={[0, 0, 0.6]}
-            fontSize={0.5}
-            color="#191919"
-            anchorX="center"
-            anchorY="middle"
-            
-          >
-            { number + 1}
-          </Text>
-        </animated.mesh>
- 
-    );
+  const handlePointerOver = () => {
+    setHovered(true);
   };
+
+  const handlePointerOut = () => {
+    setHovered(false);
+  };
+
+  const handleBoxClick = () => {
+    if (!clicked && !processing) {
+      setProcessing(true);
+      if(setClick) {
+        setClicked(true);
+
+      }
+      
+      onClick(number + 1);
+
+      setTimeout(() => setProcessing(false), 100);
+    }
+  };
+
+  return (
+    <animated.mesh
+      position={position}
+      scale={scale}
+      onPointerOver={handlePointerOver}
+      onPointerOut={handlePointerOut}
+      onClick={handleBoxClick}
+      castShadow
+      ref={boxRef}
+    >
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial
+        color={clicked ? "blue" : hovered ? "lightgray" : "white"}
+      />
+      <Text
+        position={[0, 0, 0.6]}
+        fontSize={0.5}
+        color="#191919"
+        anchorX="center"
+        anchorY="middle"
+      >
+        {number + 1}
+      </Text>
+    </animated.mesh>
+  );
+};
+
+export default BoxWithNumber;

@@ -1,4 +1,4 @@
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, } from '@react-three/fiber';
 import Lotto from './components/Lotto';
 import Lights from './components/Lights';
 import { Physics } from '@react-three/rapier';
@@ -6,7 +6,7 @@ import { useRef, useState } from 'react';
 import { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import * as THREE from 'three'
 import CameraController from './components/CameraController';
-import { Telescope, Video, VideoOff } from 'lucide-react';
+import {  Video, VideoOff } from 'lucide-react';
 
 function App() {
 let controlsRef = useRef<OrbitControlsImpl | null>(null);

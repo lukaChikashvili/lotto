@@ -10,7 +10,7 @@ const CameraController: React.FC<CameraControllerProps> = ({ targetPosition, tar
   const { camera } = useThree();
 
   useFrame(() => {
-    camera.position.lerp(targetPosition, 0.1); 
+    camera.position.lerp(targetPosition, 0.01); 
     camera.rotation.x += (targetRotation.x - camera.rotation.x) * 0.1;
     camera.rotation.y += (targetRotation.y - camera.rotation.y) * 0.1;
     camera.rotation.z += (targetRotation.z - camera.rotation.z) * 0.1;
