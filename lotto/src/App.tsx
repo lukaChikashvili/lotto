@@ -10,6 +10,7 @@ import {  PlusCircle, Video, VideoOff } from 'lucide-react';
 import { UserContext } from './context/UserContext';
 import Modal from './components/Modal';
 import sweepSound from './assets/mixkit-fast-small-sweep-transition-166.wav'
+import Balls from './components/Balls';
 
 function App() {
 let controlsRef = useRef<OrbitControlsImpl | null>(null);
@@ -20,7 +21,7 @@ const [targetPosition, setTargetPosition] = useState(new THREE.Vector3(-7, 15, 4
 const [targetRotation, setTargetRotation] = useState(new THREE.Euler(0, 0, 0));
 const [isDefault, setIsDefault] = useState(true);
 
-const { showModal, setShowModal, setShowRealModal, showRealModal } = useContext(UserContext);
+const { showModal, setShowModal, setShowRealModal, showRealModal, showBoxes } = useContext(UserContext);
   const moveCamera = () => {
     if (isDefault) {
       setTargetPosition(new THREE.Vector3(0, 40, 0)); 
@@ -50,14 +51,22 @@ const handleModal = () => {
           <Lotto controlsRef={controlsRef} />
           <Lights />
           <CameraController targetPosition={targetPosition} targetRotation={targetRotation}/>
+         {!showBoxes && <Balls />}
         </Physics>
       </Canvas>
-<div className='container'>
-  <button className='btn' onClick={moveCamera} >{cameraDefault ? <VideoOff /> : <Video />}{cameraDefault ? "ახლო ხედვა" : "შორს ხედვა"}</button>
+<div className='container' >
+<button className='btn' onClick={moveCamera} >{cameraDefault ? <VideoOff /> : <Video />}{cameraDefault ? "ახლო ხედვა" : "შორს ხედვა"}</button>
+  <div style={{display: !showBoxes ? "none" : "block"}}>
+  
   {showModal ? <h2 className='title'>არჩეულია!</h2> :  <h2 className='title'>აირჩიეთ <span>6</span> რიცხვი </h2>}
  
    {showModal && <PlusCircle size={30} className='circle' onClick={handleModal}   />}
    {showRealModal && <Modal />}
+  </div>
+  <div style={{display: showBoxes ? "none" : "block"}}>
+
+    sfkjslf
+  </div>
   </div>
     </>
   )
