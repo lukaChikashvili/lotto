@@ -11,6 +11,8 @@ type UserContextType = {
   setShowRealModal: (showRealModal: boolean) => void;
   showBoxes: boolean,
   setShowBoxes: (showBoxes: boolean) => void;
+  cameraDefault: boolean,
+  setCameraDefault: (showBoxes: boolean) => void;
 };
 
 const defaultValue: UserContextType = {
@@ -19,7 +21,9 @@ const defaultValue: UserContextType = {
   showRealModal: false,
   setShowRealModal: () => {},
   showBoxes: false,
-  setShowBoxes: () => {}
+  setShowBoxes: () => {},
+  cameraDefault: false,
+  setCameraDefault: () => {}
 };
 
 
@@ -31,10 +35,11 @@ const UserProvider = ({ children}: UserContextProps) => {
     const [showModal, setShowModal] = useState(false);
     const [showRealModal, setShowRealModal] = useState(false);
     const [showBoxes, setShowBoxes] = useState(true);
+    const [cameraDefault, setCameraDefault] = useState(false);
     
 
     return <UserContext.Provider value = {{showModal,
-     setShowModal, showRealModal,setShowRealModal, showBoxes, setShowBoxes}} >
+     setShowModal, showRealModal,setShowRealModal, showBoxes, setShowBoxes, cameraDefault, setCameraDefault}} >
       {children}
     </UserContext.Provider>
 

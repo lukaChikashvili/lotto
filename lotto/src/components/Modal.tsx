@@ -4,7 +4,7 @@ import { UserContext } from "../context/UserContext"
 
 
 const Modal = () => {
-    const { setShowModal, showModal, setShowRealModal, setShowBoxes  } = useContext(UserContext);
+    const { setShowModal, showModal, setShowRealModal, setShowBoxes , setCameraDefault } = useContext(UserContext);
     const [numbers, setNumbers] = useState<number[]>([]);
 
     const closeModal = () => {
@@ -14,6 +14,7 @@ const Modal = () => {
     const startPlaying = () => {
       setShowRealModal(false);
       setShowBoxes(false);
+      setCameraDefault(true);
 
     }
 

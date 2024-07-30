@@ -14,14 +14,14 @@ import Balls from './components/Balls';
 
 function App() {
 let controlsRef = useRef<OrbitControlsImpl | null>(null);
-const [cameraDefault, setCameraDefault] = useState(false);
+
 
 
 const [targetPosition, setTargetPosition] = useState(new THREE.Vector3(-7, 15, 40));
 const [targetRotation, setTargetRotation] = useState(new THREE.Euler(0, 0, 0));
 const [isDefault, setIsDefault] = useState(true);
 
-const { showModal, setShowModal, setShowRealModal, showRealModal, showBoxes } = useContext(UserContext);
+const { showModal, setShowModal, setShowRealModal, showRealModal, showBoxes , cameraDefault, setCameraDefault} = useContext(UserContext);
   const moveCamera = () => {
     if (isDefault) {
       setTargetPosition(new THREE.Vector3(0, 40, 0)); 
@@ -47,7 +47,7 @@ const handleModal = () => {
   return (
     <>
       <Canvas shadows camera={{ fov: 60, near: 0.1, far: 1000, position: [-7, 15, 40] }}>
-        <Physics>
+        <Physics gravity={[0, -30, 0]}>
           <Lotto controlsRef={controlsRef} />
           <Lights />
           <CameraController targetPosition={targetPosition} targetRotation={targetRotation}/>
